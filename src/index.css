@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme {
+  --font-playfair: "Playfair Display", serif;
+  --font-barlow: "Barlow", sans-serif;
+  --color-accent: #fbd784;
+  --color-bg: #0b1d26;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes ken-burns {
+  from { transform: scale(1.08); }
+  to   { transform: scale(1);    }
+}
+
+@keyframes fade-up-hero {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0);     }
+}
