@@ -50,8 +50,8 @@ const App: React.FC = () => {
 
   return (
     <div className="bg-bg text-white h-screen overflow-hidden relative">
-      <Nav />
-      <SliderIndicator current={slide} total={SLIDES.length} />
+      <Nav onGo={go} />
+      <SliderIndicator current={slide} total={SLIDES.length} onGo={go} />
 
       <AnimatePresence
         mode="sync"

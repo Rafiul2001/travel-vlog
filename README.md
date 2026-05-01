@@ -1,75 +1,78 @@
-# React + TypeScript + Vite
+# Jungle Trail — A Forest Hiking Guide
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A personal hiking landing page by **Shah Md. Rafiul Kadir**, documenting forest trails in Bangladesh through photography and storytelling. Built as a polished, portfolio-quality web experience with a dual layout: a fullscreen slide show on desktop and a normal scroll layout on mobile.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Project Summary
 
-## React Compiler
+The site walks visitors through seven trail sections — from the first steps into the forest, across wild stream crossings and hidden cascades, up canyon walls, and finally out through golden-hour light. A photo gallery at the end collects extra trail moments. Every section is paired with a real photograph from a hike on 19 April 2026.
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+### Layout Modes
 
-Note: This will impact Vite dev & build performances.
+**Desktop** — fullscreen, one-slide-at-a-time presentation. Navigation via mouse wheel, keyboard arrow keys, the side slide indicator, or the nav bar links.
 
-## Expanding the ESLint configuration
+**Mobile** — standard vertical scroll with all sections stacked, so the full content is accessible without JS-driven slide logic.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Key Features
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Animated slide transitions in four directions (up / down / left / right) powered by Motion
+- Side slide indicator with clickable labels (`Start`, `01`–`08`) for direct jump navigation
+- Nav bar "Trails" and "Gallery" links that slide-navigate on desktop and anchor-scroll on mobile
+- Hero parallax background and word-by-word headline animation
+- Photo gallery with staggered entrance and hover zoom
+- Adjacent-slide image preloading to eliminate load flicker
+- React Compiler enabled for automatic memoisation
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Tech Stack
+
+| Layer | Choice |
+|---|---|
+| Framework | React 19 |
+| Language | TypeScript 6 |
+| Build tool | Vite 8 |
+| Styling | Tailwind CSS 4 |
+| Animation | Motion (motion/react) |
+| Deployment | Netlify |
+
+---
+
+## Getting Started
+
+```bash
+# Install dependencies
+bun install
+
+# Start dev server
+bun run dev
+
+# Production build
+bun run build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Project Structure
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+src/
+├── components/
+│   ├── atoms/          # ScrollBar, SliderIndicator
+│   ├── icons/          # Arrow icons
+│   └── templates/      # Hero, Nav, ContentBlock, GallerySection
+├── data/
+│   ├── nav.ts          # Nav links with slide indices
+│   ├── slides.ts       # Slide metadata and animation variants
+│   └── trails.tsx      # Trail section content
+├── hooks/
+│   ├── useIsMobile.ts  # Breakpoint detection
+│   └── useSlideNavigation.ts  # Wheel, keyboard, and click navigation
+└── lib/
+    └── easing.ts       # Custom easing curves
+```
+
+---
+
+Copyright 2026 Shah Md. Rafiul Kadir. All rights reserved.

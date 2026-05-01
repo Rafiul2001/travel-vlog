@@ -4,9 +4,10 @@ import { NAV_LINKS } from '../../data/nav'
 type NavProps = {
   position?: 'fixed' | 'absolute'
   gapClass?: string
+  onGo?: (index: number) => void
 }
 
-export const Nav = ({ position = 'fixed', gapClass = 'lg:gap-28.75' }: NavProps) => (
+export const Nav = ({ position = 'fixed', gapClass = 'lg:gap-28.75', onGo }: NavProps) => (
   <motion.nav
     className={`${position} top-0 inset-x-0 z-40`}
     initial={{ y: -80, opacity: 0 }}
@@ -25,10 +26,11 @@ export const Nav = ({ position = 'fixed', gapClass = 'lg:gap-28.75' }: NavProps)
         />
       </a>
       <div className={`hidden md:flex gap-8 ${gapClass} mx-auto font-barlow font-bold text-lg`}>
-        {NAV_LINKS.map(({ label, href }, i) => (
+        {NAV_LINKS.map(({ label, href, slideIndex }, i) => (
           <motion.a
             key={label}
             href={href}
+            onClick={onGo && slideIndex != null ? (e) => { e.preventDefault(); onGo(slideIndex) } : undefined}
             className="relative hover:text-accent transition-colors"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
