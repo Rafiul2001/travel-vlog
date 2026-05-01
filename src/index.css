@@ -11,6 +11,11 @@ html {
   scroll-behavior: smooth;
 }
 
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
 @keyframes ken-burns {
   from { transform: scale(1.08); }
   to   { transform: scale(1);    }

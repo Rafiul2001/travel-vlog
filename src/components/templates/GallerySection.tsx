@@ -152,7 +152,7 @@ export const GallerySection = forwardRef<HTMLDivElement, GallerySectionProps>(
   ({ desktopMode = false, onGo }, ref) => {
     if (desktopMode) {
       return (
-        <div ref={ref} className="h-full overflow-y-auto">
+        <div ref={ref} className="h-full overflow-y-auto no-scrollbar">
           <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-10 flex flex-col items-center gap-16 pt-28 pb-20">
             <Content onGo={onGo} />
           </div>
