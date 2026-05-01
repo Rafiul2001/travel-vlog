@@ -45,7 +45,7 @@ const App: React.FC = () => {
         </div>
       </div>
     )),
-    <GallerySection key="gallery" ref={galleryRef} desktopMode />,
+    <GallerySection key="gallery" ref={galleryRef} desktopMode onGo={go} />,
   ]
 
   return (

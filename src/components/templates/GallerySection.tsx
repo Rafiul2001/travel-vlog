@@ -11,11 +11,11 @@ const GALLERY_IMAGES = [
 ]
 
 const FOOTER_LINKS = [
-  { label: 'Home',    href: '/' },
+  { label: 'Home', href: '/', slideIndex: 0 },
   ...NAV_LINKS,
 ]
 
-const Content = () => (
+const Content = ({ onGo }: { onGo?: (index: number) => void }) => (
   <>
     <motion.div
       id="gallery"
@@ -114,9 +114,15 @@ const Content = () => (
             <div>
               <h3 className="font-barlow font-bold text-2xl text-accent leading-8">Explore</h3>
               <ul className="mt-10 lg:mt-14 space-y-4 lg:space-y-8 font-barlow font-medium text-lg text-white">
-                {FOOTER_LINKS.map(({ label, href }) => (
+                {FOOTER_LINKS.map(({ label, href, slideIndex }) => (
                   <li key={label}>
-                    <a href={href} className="hover:text-accent transition-colors">{label}</a>
+                    <a
+                      href={href}
+                      onClick={onGo && slideIndex != null ? (e) => { e.preventDefault(); onGo(slideIndex) } : undefined}
+                      className="hover:text-accent transition-colors"
+                    >
+                      {label}
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -138,17 +144,17 @@ const Content = () => (
 )
 
 type GallerySectionProps = {
-  /** Wrap in a full-height scrollable container for the desktop slide layout. */
   desktopMode?: boolean
+  onGo?: (index: number) => void
 }
 
 export const GallerySection = forwardRef<HTMLDivElement, GallerySectionProps>(
-  ({ desktopMode = false }, ref) => {
+  ({ desktopMode = false, onGo }, ref) => {
     if (desktopMode) {
       return (
         <div ref={ref} className="h-full overflow-y-auto">
           <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-10 flex flex-col items-center gap-16 pt-28 pb-20">
-            <Content />
+            <Content onGo={onGo} />
           </div>
         </div>
       )

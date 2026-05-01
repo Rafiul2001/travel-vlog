@@ -1,4 +1,3 @@
-import React from 'react'
 import type { ContentBlockProps } from '../components/templates/ContentBlock'
 
 export type TrailData = ContentBlockProps & { key: string }
